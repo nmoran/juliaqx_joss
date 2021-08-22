@@ -39,7 +39,7 @@ bibliography: paper.bib
 QXTools is a framework for simulating quantum circuits using tensor network methods.
 It is designed to run on large distributed compute clusters and supports GPU
 accelerators. The simulation workflow is broken down into a number of stages, each
-of which is managed by a special purpose package that can be used independently or
+of which is managed by a special purpose package which can be used independently or
 as part of the QXTools framework. A domain specific language (DSL) is used to
 represent the simulation as a set of tensor network operations.
 This separates the high level index accounting and contraction planning from the
@@ -49,36 +49,32 @@ support new hardware and network architectures.
 # Statement of need
 
 As quantum processing devices continue to scale and the algorithms and experiments
-being run on them grow in complexity, simuulations of these systems become much
-more computationally demanding. To reduce the turn around time and
+being run on them grow in complexity, simulations of these systems become much
+more computationally demanding. To reduce the turnaround time and
 allow larger systems to be simulated it is necessary to move beyond single workstations
 and use distributed compute clusters. QXTools provides a flexible, extensible open source
-framework for performing these simulations. The use of Julialang makes it easy for the code
+framework for performing these simulations. The use of Julialang
+[@Bezanson:2017] makes it easy for the code
 to be understood, modified and extended while not sacrificing performance compared to
 compiled languages.
 
-<!-- # Citations
+# Functionality and design
 
-Citations to entries in paper.bib should be in
-[rMarkdown](http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html)
-format.
+QXTools consists of a number of Julialang packages available under the
+[@JuliaQX] organization and registered in the Julialang package registry.
+The QXTools.jl package ties these together to
+enable circuit simulation workflows. The individual packages and their
+roles are as follows:
 
-If you want to cite a software repository URL (e.g. something on GitHub without a preferred
-citation) then you can do it with the example BibTeX entry below for @fidgit.
-
-For a quick reference, the following citation commands can be used:
-- `@author:2001`  ->  "Author et al. (2001)"
-- `[@author:2001]` -> "(Author et al., 2001)"
-- `[@author1:2001; @author2:2001]` -> "(Author1 et al., 2001; Author2 et al., 2002)"
-
-# Figures
-
-Figures can be included like this:
-![Caption for example figure.\label{fig:example}](figure.png)
-and referenced from text using \autoref{fig:example}.
-
-Figure sizes can be customized by adding an optional second parameter:
-![Caption for example figure.](figure.png){ width=20% } -->
+- QXTns.jl: Provides data structures representing tensor networks and tensor network
+circuits along with functionality for contracting these and keeping track of tensor
+indices and hyper-indices.
+- QXGraphDecompositions.jl: Provides specialised graph data structures and algorithms
+for finding good contraction orderings and edges to slice to decompose computations.
+- QXContexts.jl: Provides computation tree data structures to represent computations
+and the ability to execute these compute graphs on different hardware platforms.
+- QXZoo.jl: Quantum circuit representations and manipulation functionality.
+- YaoQX.jl: Enables QXTools to be used as a backend for Yao.jl [@Luo:2020].
 
 # Acknowledgements
 
